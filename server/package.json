@@ -1,0 +1,21 @@
+{
+  "name": "vue-koa-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "liushang",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^7.4.3",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "md5": "^2.2.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.8",
+    "tracer": "^0.8.11"
+  }
+}
