@@ -11,6 +11,7 @@ const addTag = async (ctx) => {
     });
     if(isExist !== null){
         return ctx.body = {
+            code: 200,
             msg: '此标签已存在！',
             data: isExist
         };
@@ -22,6 +23,7 @@ const addTag = async (ctx) => {
         ctx.throw(500, '服务器错误-->数据库创建tag出错');
     });
     return ctx.body = {
+        code: 200,
         msg: '标签创建成功！',
         data: result
     }
@@ -34,6 +36,7 @@ const delTag = async (ctx) => {
         ctx.throw(500, '服务器错误-->数据库删除tag出错');
     });
     return ctx.body = {
+        code: 200,
         msg: '删除标签成功！',
         data: result
     }
@@ -50,6 +53,7 @@ const editTag = async (ctx) => {
         ctx.throw(500, '服务器错误-->修改tag出错');
     });
     return ctx.body = {
+        code: 200,
         msg: '修改标签成功！',
         data: result
     }
@@ -61,6 +65,7 @@ const getAllTags = async (ctx) => {
         ctx.throw(500, '服务器错误-->数据库查询所有tag出错');
     });
     return ctx.body = {
+        code: 200,
         msg: '所有标签获得成功！',
         data: result
     };

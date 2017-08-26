@@ -29,11 +29,13 @@ const login = async (ctx) => {
             }
         } else {
             return ctx.body = {
+                code: 200,
                 msg: '密码错误！',
             }
         }
     } else {
         return ctx.body = {
+            code: 200,
             msg: '用户名不存在！'
         }
     }
@@ -42,6 +44,7 @@ const login = async (ctx) => {
 // 用户退出
 const logout = async (ctx) => {
     return ctx.body = {
+        code: 200,
         msg: '退出成功！'
     }
 };
@@ -54,6 +57,7 @@ const changeAdminPwd = async (ctx) => {
         ctx.throw(500, '服务器内部错误-->重置管理员密码错误！');
     });
     return ctx.body = {
+        code: 200,
         msg: '更改管理员密码成功'
     }
 };

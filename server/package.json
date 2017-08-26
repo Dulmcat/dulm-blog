@@ -1,7 +1,8 @@
 {
-  "name": "vue-koa-blog",
+  "name": "v-k-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "a vue2-koa2 blog",
+  "repository": "git@github.com:Dulmcat/v-k-log.git",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
