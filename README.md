@@ -25,7 +25,18 @@
         |-index.js ——路由，采用RESTful风格
     |-tools ——工具文件
         |-createToken.js ——创建token
+        |-checkToken.js ——检查token
     app.js ——入口文件
+```
+
+使用以下方法开启
+```
+npm install
+
+node app
+
+npm run dev
+
 ```
 
 ---
