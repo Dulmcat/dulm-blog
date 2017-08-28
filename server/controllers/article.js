@@ -1,4 +1,4 @@
-const Article = require('../models/article').article;
+const Article = require('../models/index').article;
 
 // 添加新文章
 const addArticle = async (ctx, next) => {

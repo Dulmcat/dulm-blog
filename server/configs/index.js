@@ -14,7 +14,7 @@ let config = {
     },
     jwt: {
         secret: 'secrets',
-        expiresIn: '1h'
+        expiresIn: '1d'
     },
     admin: {
         username: 'admin',

@@ -1,4 +1,5 @@
 const config = require('../configs');
+const checkToken = require('../tools/checkToken');
 const Router = require('koa-router');
 
 const router = new Router({
@@ -24,15 +25,15 @@ router
 
     .get('/tags', tag.getAllTags)
     .post('/tags', tag.addTag)
-    .patch('/tags/:id', tag.editTag)
-    .delete('/tags/:id', tag.delTag)
+    .patch('/tags/:id', checkToken, tag.editTag)
+    .delete('/tags/:id', checkToken, tag.delTag)
 
-    .post('/articles', article.addArticle)
-    .delete('/articles/:id', article.delArticle)
-    .patch('/pubArticles/:id', article.publishArticle)
-    .patch('/articlec/:id', article.editArticle)
+    .post('/articles', checkToken, article.addArticle)
+    .delete('/articles/:id', checkToken, article.delArticle)
+    .patch('/pubArticles/:id', checkToken, article.publishArticle)
+    .patch('/articlec/:id', checkToken, article.editArticle)
     .get('/articles/:id', article.getSingleArticle)
-    .get('/allArticles', article.getAllArticles)
+    .get('/allArticles', checkToken, article.getAllArticles)
     .get('/articles', article.getAllPublishedArticles);
 
 module.exports = router;
