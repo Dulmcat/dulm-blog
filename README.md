@@ -15,7 +15,7 @@
     |-middlewares ——中间件文件夹
         |-errorHandle.js ——错误处理中间价
         |-setAdmin.js ——设置默认的管理员账户密码
-    |-models ——模型文件夹
+    |-models ——数据库模型文件夹
         |-article.js ——文章模型
         |-index.js ——//一开始默认写在这里，后来抽离了出去
         |-tag.js ——标签模型

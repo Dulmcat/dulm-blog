@@ -11,7 +11,7 @@ const bodyParser = require('koa-bodyparser');
 // 错误处理中间件
 const errorHandle = require('./middlewares/errorHandle');
 
-// 设置初始admin账户密码中间件
+// 设置初始admin账户密码
 const setAdmin = require('./middlewares/setAdmin');
 
 // 路由
@@ -39,7 +39,9 @@ app.use(errorHandle);
 app.use(setAdmin);
 
 // 使用路由
-app.use(router.routes()).use(router.allowedMethods());
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 // 监听端口
 app.listen(config.app.port, () => {
