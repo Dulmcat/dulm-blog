@@ -17,9 +17,10 @@ const login = async (ctx) => {
     if (result) {
         if (result.password === md5(password)) {
             let token = createToken(result._id);
-            return ctx.body = {
+            ctx.body = {
                 code: 200,
                 msg: '密码正确！',
+                token: token,
                 data: {
                     uid: result._id,
                     name: result.name,
