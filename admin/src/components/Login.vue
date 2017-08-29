@@ -40,65 +40,37 @@
                 }
                 let username = this.username;
                 let password = this.password;
-                // Api.login({ 'username': username, 'password': password }).then(res => {
-                //     console.log(res);
-                //     if (res.data.code === 200) {
-                //         if (res.data.token) {
-                //             this.$message({
-                //                 showClose: true,
-                //                 type: 'success',
-                //                 message: res.data.msg
-                //             });
-                //             sessionStorage.setItem('userToken', res.data.token);// 将token存入sessionStorage，在接下来的所有请求中，将token写在请求头中
-                //             router.push('/hello');
-                //         } else {
-                //             this.$message({
-                //                 showClose: true,
-                //                 type: 'error',
-                //                 message: res.data.msg
-                //             });
-                //             return;
-                //         }
-                //     }
-                // })
-                this.$store.dispatch('createToken', { username, password })
-                    .then(res => {
-                        console.log(res);
-                        if (res.token) {
-                            debugger;
-                            let redirectUrl = '';
-                            debugger;
-                            if (this.$route.query.redirect) {
-                                redirectUrl = decodeURIComponent(this.$route.query.redirect);
-                                debugger;
-                            } else {
-                                redirectUrl = '/hello';
-                                debugger;
-                            }
-                            this.$router.push({
-                                path: redirectUrl
-                            });
-                            debugger;
-                            this.$message({
-                                showClose: true,
-                                type: 'success',
-                                message: '登录成功!'
-                            });
+                this.$store.dispatch('createToken', { username, password }).then(res => {
+                    console.log(res)
+                    if (res.token) {
+                        let redirectUrl = '';
+                        if (this.$route.query.redirect) {
+                            redirectUrl = decodeURIComponent(this.$route.query.redirect);
                         } else {
-                            this.$message({
-                                showClose: true,
-                                type: 'error',
-                                message: res.msg
-                            });
+                            redirectUrl = '/hello';
                         }
-                    })
-                    .catch(err => {
+                        this.$router.push({
+                            path: redirectUrl
+                        });
+                        this.$message({
+                            showClose: true,
+                            type: 'success',
+                            message: '登录成功!'
+                        });
+                    } else {
                         this.$message({
                             showClose: true,
                             type: 'error',
-                            message: '登录失败!'
+                            message: res.msg
                         });
+                    }
+                }).catch(err => {
+                    this.$message({
+                        showClose: true,
+                        type: 'error',
+                        message: '登录失败!'
                     });
+                });
             }
         }
     }
@@ -111,6 +83,7 @@
         margin: 0;
         padding: 0;
     }
+
     .login-warp {
         position: fixed;
         width: 100%;

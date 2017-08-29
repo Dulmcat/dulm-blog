@@ -22,8 +22,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             Api.login({ username, password }).then(res => {
                 // 登陆成功
-                
-                if (res.data.code === 200) {
+                console.log(res)
+                if (res.data.token) {
                     let token = res.data.token;
                     commit(types.TOKEN_CREATE, token);
                     resolve(res.data)
