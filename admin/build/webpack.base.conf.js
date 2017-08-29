@@ -37,10 +37,7 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           resolve('src'),
-          resolve('test'),
-          resolve('libs'),
-          resolve('/node_modules/element-ui/packages'),
-          resolve('/node_modules/element-ui/src')
+          resolve('test')
         ]
       },
       {
