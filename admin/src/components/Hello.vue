@@ -23,6 +23,5 @@
     h1,
     h2 {
         font-weight: normal;
-        text-align: center;
     }
 </style>

@@ -39,19 +39,6 @@ export default {
 </script>
 <style lang="less">
 @import '../../assets/style/_setting';
-    a{
-        text-decoration: none;
-    }
-    a:hover{
-        color: #333;
-        cursor: pointer;
-    }
-    a:visited{
-        color: #333;
-    }
-    p{
-        margin: 0;
-    }
     header{
         display: flex;
         justify-content: space-between;

@@ -20,12 +20,6 @@ export default{
 </script>
 <style scoped lang="less">
 @import '../../assets/style/_setting';
-    ul{
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        font-size: 0;
-    }
     nav{
         position: fixed;
         width: 150px;
