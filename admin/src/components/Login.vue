@@ -41,7 +41,6 @@
                 let username = this.username;
                 let password = this.password;
                 this.$store.dispatch('createToken', { username, password }).then(res => {
-                    console.log(res)
                     if (res.token) {
                         let redirectUrl = '';
                         if (this.$route.query.redirect) {
