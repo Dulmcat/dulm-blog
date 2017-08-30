@@ -1,7 +1,7 @@
 <template>
     <div class="login-warp">
         <div class="login-main">
-            <h1>欢迎回来！</h1>
+            <h1>请登录！</h1>
             <el-input type="text" v-model="username" placeholder="请输入账号"></el-input>
             <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
             <el-button type="primary" class="login-btn" @click.stop="login()">登录</el-button>
@@ -46,7 +46,7 @@
                         if (this.$route.query.redirect) {
                             redirectUrl = decodeURIComponent(this.$route.query.redirect);
                         } else {
-                            redirectUrl = '/hello';
+                            redirectUrl = '/admin';
                         }
                         this.$router.push({
                             path: redirectUrl
@@ -78,11 +78,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
+    @import '../assets/style/_setting';
     .login-warp {
         position: fixed;
         width: 100%;

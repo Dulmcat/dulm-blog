@@ -1,13 +1,13 @@
 <template>
     <nav>
         <ul>
-            <router-link to="/admin/article" tag="li" >
+            <router-link to="/admin/article" tag="li" active-class="active" class="aside-list">
                 发布文章
             </router-link>
-            <router-link to="/admin/list" tag="li">
+            <router-link to="/admin/list" tag="li" active-class="active" class="aside-list">
                 管理文章
             </router-link>
-            <router-link to="/admin/tag" tag="li">
+            <router-link to="/admin/tag" tag="li" active-class="active" class="aside-list">
                 标签管理
             </router-link>
         </ul>
@@ -18,6 +18,35 @@
 export default{
 }
 </script>
-<style lang="less">
-
+<style scoped lang="less">
+@import '../../assets/style/_setting';
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+    }
+    nav{
+        position: fixed;
+        width: 150px;
+        top: 70px;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        background-color:  #2b2b2b;
+        color: #fefefe;
+        .aside-list{
+            height: 60px;
+            line-height: 60px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            &.active{
+                background-color: #363636;
+            }
+            &:hover{
+                background-color: #363636;
+            }
+        }
+    }
 </style>
