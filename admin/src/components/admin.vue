@@ -45,7 +45,7 @@ export default {
         right: 0;
         bottom: 0;
         background-color: #fff;
-        overflow: hidden;
+        overflow-y: scroll;
     }
 }
 </style>
