@@ -10,7 +10,7 @@
             <el-button type="primary" @click.stop="addTag()">点击添加</el-button>
             <ul class="tag-list">
                 <li class="list-item" v-for="(item, index) in tagArr">
-                    <p>{{item}}</p>
+                    <p @click="delTag(item, index)"></i>{{item.name}}</p>
                 </li>
             </ul>
         </div>
@@ -20,7 +20,6 @@
             <el-button type="primary" @click.stop="pubArticle()">发布文章</el-button>
         </div>
     </div>
-    
 </template>
 
 <script>
@@ -28,12 +27,12 @@
     import marked from 'marked';
     let simplemde;
     export default {
-        name: 'Hello',
+        name: 'Edit',
         data() {
             return {
                 title: '',
                 tag: '',
-                tagArr: ['123','456789123456798'],
+                tagArr: [],
             }
         },
         mounted(){
@@ -55,6 +54,56 @@
                     e.preventDefault();
                 }
             });
+        },
+        methods: {
+            addTag(){
+                if(this.tag === ''){
+                    this.$message({
+                        showClose: true,
+                        type: 'warning',
+                        message: '标签还没写呢'
+                    })
+                    return;
+                }
+                if(this.tagArr.length >= 5){
+                    this.tag = '';
+                    this.$message({
+                        showClose: true,
+                        type: 'warning',
+                        message: '不能超过5个标签'
+                    });
+                    return;
+                }
+                this.$store.dispatch('addTag', this.tag).then(res => {
+                    this.tagArr.splice(this.tagArr.length, 0, res.data);
+                    this.tag = '';
+                    this.$message({
+                        showClose: true,
+                        type: 'success',
+                        message: '已添加一个标签'
+                    })
+                })    
+            },
+            delTag(item, index){
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('delTag', item._id).then(res => {
+                        this.tagArr.splice(index, 1);
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });          
+                });
+            }
         }
     }
 
@@ -88,11 +137,13 @@
                 align-items: center; 
                 margin: 10px;
                 margin-left: 0;
-                padding: 8px 15px;
                 border: 1px solid #999;
                 border-radius: 4px;
                 font-size: 16px;
                 cursor: pointer;
+                p{
+                    margin: 8px 15px;
+                }
             }
         }
         .btn{

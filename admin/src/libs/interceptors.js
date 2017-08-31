@@ -8,7 +8,7 @@ axios.defaults.timeout = 5000;
 // request
 axios.interceptors.request.use((config) => {
     if (store.state.token.token) {
-        config.headers.Authorization = `token ${store.state.token}`;
+        config.headers.Authorization = `token ${store.state.token.token}`;
     }
     return config;
 }, (error) => {

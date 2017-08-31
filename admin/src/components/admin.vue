@@ -36,7 +36,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
     section{
         position: absolute;
         min-width: 600px;
