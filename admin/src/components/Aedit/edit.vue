@@ -10,7 +10,7 @@
             <el-button type="primary" @click.stop="addTag()">点击添加</el-button>
             <ul class="tag-list">
                 <li class="list-item" v-for="(item, index) in tagArr">
-                    <p @click="delTag(item, index)"></i>{{item.name}}</p>
+                    <el-button icon="delete" @click="delTag(item, index)">{{item.name}}</el-button>
                 </li>
             </ul>
         </div>
@@ -85,7 +85,7 @@
                 })    
             },
             delTag(item, index){
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除该标签, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -128,7 +128,7 @@
             }
         }
         .tag-list{
-            min-height: 45px;
+            min-height: 56px;
             display: flex;
             flex-wrap: wrap;
             .list-item{
@@ -137,13 +137,7 @@
                 align-items: center; 
                 margin: 10px;
                 margin-left: 0;
-                border: 1px solid #999;
-                border-radius: 4px;
                 font-size: 16px;
-                cursor: pointer;
-                p{
-                    margin: 8px 15px;
-                }
             }
         }
         .btn{
