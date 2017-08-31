@@ -46,6 +46,7 @@ export default {
         bottom: 0;
         background-color: #fff;
         overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
 </style>
