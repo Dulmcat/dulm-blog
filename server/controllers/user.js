@@ -30,13 +30,13 @@ const login = async (ctx) => {
             }
         } else {
             return ctx.body = {
-                code: 200,
+                code: 0,
                 msg: '密码错误！',
             }
         }
     } else {
         return ctx.body = {
-            code: 200,
+            code: 0,
             msg: '用户名不存在！'
         }
     }

@@ -11,7 +11,7 @@ const addTag = async (ctx) => {
     });
     if(isExist !== null){
         return ctx.body = {
-            code: 200,
+            code: 0,
             msg: '此标签已存在！',
             data: isExist
         };

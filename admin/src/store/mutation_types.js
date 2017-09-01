@@ -33,6 +33,6 @@ export const ADD_TAG = 'ADD_TAG';
 // 删除标签
 export const DEL_TAG = 'DEL_TAG';
 // 获得所有标签
-export const GET_ALL_TAG = 'GET_ALL_TAG';
+export const GET_ALL_TAGS = 'GET_ALL_TAGS';
 // 修改标签
 export const EDIT_TAG = 'EDIT_TAG';
