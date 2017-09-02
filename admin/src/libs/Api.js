@@ -47,7 +47,7 @@ export default {
         return axios.get(baseUrl + '/tags');
     },
     // 修改标签
-    editTag(data){
+    editTag(id, data){
         return axios.patch(baseUrl + '/tags/' + id, data);
     },
     // 删除标签

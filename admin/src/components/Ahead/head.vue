@@ -11,56 +11,57 @@
 <script>
 export default {
     methods: {
-        logout(){
+        logout() {
             this.$confirm('此操作将退出后台系统, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$store.commit('TOKEN_DELETE');
-                    this.$store.commit('RESET');
-                    this.$router.push('/login');
-                    this.$message({
-                        showClose: true,
-                        type: 'success',
-                        message: '退出成功!'
-                    });
-                }).catch((error) => {
-                    this.$message({
-                        showClose: true,
-                        type: 'info',
-                        message: '已取消退出'
-                    });
-                    console.log(error);         
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.$store.commit('TOKEN_DELETE');
+                this.$store.commit('RESET');
+                this.$router.push('/login');
+                this.$message({
+                    showClose: true,
+                    type: 'success',
+                    message: '退出成功!'
                 });
+            }).catch((error) => {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '已取消退出'
+                });
+                console.log(error);
+            });
         }
     }
 }
 </script>
 <style lang="less">
 @import '../../assets/style/_setting';
-    header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 5;
+    background-color: #fff;
+    color: #333;
+    .header-icon,
+    .header-logout {
         height: 60px;
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 5;
-        background-color: #fff;
-        color: #333;
-        .header-icon,.header-logout{
-            height: 60px;
-            line-height: 60px;
-            cursor: pointer;
-            margin: 0 20px;
-            color: #555;
-            font-size: 18px;
-       }
-       .header-logout{
-           font-size: 16px;
-       }
+        line-height: 60px;
+        cursor: pointer;
+        margin: 0 20px;
+        color: #555;
+        font-size: 18px;
     }
+    .header-logout {
+        font-size: 16px;
+    }
+}
 </style>

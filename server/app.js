@@ -41,8 +41,10 @@ app.use(errorHandle);
 // 使用setAdmin中间件-->只有在首次启动项目才会创建admin账户密码
 app.use(setAdmin);
 
-// 使用跨域
-app.use(cors());
+// 使用跨域 --> koa2-cors需要添加支持PATCH方法
+app.use(cors({
+    allowMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH', 'HEAD', 'OPTIONS']
+}));
 
 // 使用路由
 app

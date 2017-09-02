@@ -3,13 +3,13 @@ const Tag = require('../models/index').tag;
 // 添加tag-->如果该tag已存在就不再新建
 const addTag = async (ctx) => {
     const name = ctx.request.body.name;
-    if(!name){
+    if (!name) {
         ctx.throw(400, '标签不能为空');
     }
-    let isExist = await Tag.findOne({name}).exec().catch(err => {
+    let isExist = await Tag.findOne({ name }).exec().catch(err => {
         ctx.throw(500, '服务器错误-->数据库查询单一tag出错');
     });
-    if(isExist !== null){
+    if (isExist !== null) {
         return ctx.body = {
             code: 0,
             msg: '此标签已存在！',
@@ -46,16 +46,21 @@ const delTag = async (ctx) => {
 const editTag = async (ctx) => {
     const id = ctx.params.id;
     let name = ctx.request.body.name;
-    if(!name){
+    if (!name) {
         ctx.throw(500, '标签类型不能为空！');
     }
-    let result = await Tag.findByIdAndUpdate(id, {name}).exec().catch(err => {
+    let oldResult = await Tag.findById(id).catch(err => {
+        ctx.throw(500, '服务器错误-->查询修改前tag出错');
+    });
+    let result = await Tag.findByIdAndUpdate(id, { name }, { new: true }).exec().catch(err => { // 添加{new: true}用来返回新的tag
         ctx.throw(500, '服务器错误-->修改tag出错');
     });
+    console.log(result);
     return ctx.body = {
         code: 200,
         msg: '修改标签成功！',
-        data: result
+        data: result,
+        oldData: oldResult
     }
 };
 
