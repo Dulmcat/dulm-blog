@@ -19,8 +19,7 @@ export default {
         return {
             tag: '',
             tagArr: [],
-            newTag: '',
-            thisTag: ''
+            newTag: ''
         }
     },
     created() {
@@ -36,16 +35,19 @@ export default {
             let value = {
                 val: item.name,
                 id: item._id
-            }
+            };
+            // TODO @blur时，将旧值重新赋给item
+            let oldName = this.$store.state.article.allTags[index].name;
+            console.log(oldName);
             this.$store.dispatch('editTag', value).then(res => {
                 if(res.code === 200){
                     this.$message({
                         showClose: true,
                         type: 'success',
                         message: `已将原标签 ${res.oldData.name} 修改为 ${res.data.name} `
-                    })
+                    });
                 }
-            })
+            });
         },
         delTag(item, index) {
             this.$confirm('此操作将永久删除该标签, 是否继续?', '提示', {
