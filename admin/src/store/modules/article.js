@@ -127,7 +127,7 @@ const mutations = {
     },
     // 取消发布
     [types.NOT_PUB_ARTICLE](state, index) {
-        if(index === state.thisArticle.index) {
+        if (index === state.thisArticle.index) {
             state.thisArticle.publish = false;
             state.allArticles[state.thisArticle.index].publish = false;
         } else {
@@ -224,6 +224,34 @@ const actions = {
                     })
             })
         }
+    },
+    // 发布文章
+    pubArticle({ commit, state }, { id, index }) {
+        return new Promise((resolve, reject) => {
+            Api.pubArticle(id, true).then(res => {
+                if (res.data.code === 200) {
+                    commit(types.PUB_ARTICLE, index);
+                    resolve(res.data);
+                }
+            })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+    // 取消发布
+    notPubArticle({ commit }, { id, index }) {
+        return new Promise((resolve, reject) => {
+            Api.pubArticle(id, false).then(res => {
+                if (res.data.code === 200) {
+                    commit(types.NOT_PUB_ARTICLE, index);
+                    resolve(res.data);
+                }
+            })
+                .catch(err => {
+                    reject(err);
+                });
+        });
     }
 };
 
