@@ -31,7 +31,7 @@ router
     .post('/articles', checkToken, article.addArticle)
     .delete('/articles/:id', checkToken, article.delArticle)
     .patch('/pubArticles/:id', checkToken, article.publishArticle)
-    .patch('/articlec/:id', checkToken, article.editArticle)
+    .patch('/articles/:id', checkToken, article.editArticle)
     .get('/articles/:id', article.getSingleArticle)
     .get('/allArticles', checkToken, article.getAllArticles)
     .get('/articles', article.getAllPublishedArticles);

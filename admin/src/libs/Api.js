@@ -24,7 +24,7 @@ export default {
     },
     // 修改文章
     changeArticle(id, data){
-        return axios.patch(baseUrl + '/artcles/' + id, data);
+        return axios.patch(baseUrl + '/articles/' + id, data);
     },
     // 获得单个文章
     getSingleArticle(id){

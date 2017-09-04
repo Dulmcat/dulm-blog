@@ -136,13 +136,84 @@ export default {
                 abstract = this.content.split('<!--more-->')[0];
             }
             let article = {
-                title: 　this.title,
+                title: this.title,
                 abstract: abstract,
                 content: this.content,
                 tags: this.tagArr,
             }
-            console.log(article);
-        }
+            if (this.title === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '标题还没写呢'
+                });
+                return;
+            }
+            if (abstract === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '摘要啦！ <!--more--> '
+                });
+                return;
+            }
+            if (this.content === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '还没有内容！'
+                });
+                return;
+            }
+            if (this.tagArr.length === 0) {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '填上标签啊喂！'
+                });
+                return;
+            }
+            this.$store.dispatch('saveArticle', article).then(res => {
+                console.log(res)
+                if (res.code === 200) {
+                    this.$message({
+                        showClose: true,
+                        type: 'success',
+                        message: '保存成功啦'
+                    });
+                }
+            })
+        },
+        clearAll(){
+            // if(this.title !== '' || this.content !== '' || this.abstract !== '' || this.tagArr.length !== 0){
+            //     this.$message({
+            //         showClose: true,
+            //         type: 'warning',
+            //         message: '当前文章还没保存呢。。。'
+            //     });
+            //     return;
+            // }
+            this.$confirm('此操作将要删除已写内容！是否继续？','提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.title = '';
+                this.content = '';
+                this.abstract = '';
+                this.tagArr = [];
+                this.$store.commit('EMPTY_ARTICLE');
+                simplemde.value('');
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '新建草稿成功！'
+                })
+            }).catch(() => {});
+        },
+        pubArticle(){
+            console.log('click pubArticle')
+        }        
     }
 }
 
@@ -183,4 +254,27 @@ export default {
         margin-bottom: 20px;
     }
 }
+/*
+　　　　　　　　┏┓　　　┏┓+ +
+　　　　　　　┏┛┻━━━┛┻┓ + +
+　　　　　　　┃　　　　　　　┃ 　
+　　　　　　　┃　　　━　　　┃ ++ + + +
+　　　　　　 ████━█████+
+　　　　　　　┃　　　　　　　┃ +
+　　　　　　　┃　　　┻　　　┃
+　　　　　　　┃　　　　　　　┃ + +
+　　　　　　　┗━┓　　　┏━┛
+　　　　　　　　　┃　　　┃　　　　　　　　　　　
+　　　　　　　　　┃　　　┃ + + + +
+　　　　　　　　　┃　　　┃　　　　Code is far away from bug with the animal protecting　　　　　　　
+　　　　　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　
+　　　　　　　　　┃　　　┃
+　　　　　　　　　┃　　　┃　　+　　　　　　　　　
+　　　　　　　　　┃　 　　┗━━━┓ + +
+　　　　　　　　　┃ 　　　　　　　┣┓
+　　　　　　　　　┃ 　　　　　　　┏┛
+　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
+　　　　　　　　　　┃┫┫　┃┫┫
+　　　　　　　　　　┗┻┛　┗┻┛+ + + +
+*/
 </style>

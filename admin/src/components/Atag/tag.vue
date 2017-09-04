@@ -6,7 +6,7 @@
         <ul class="tag-list">
             <li class="list-item" v-for="(item, index) in tagArr" :key="item._id">
                 <i class="icon-tag"></i>
-                <input class="tag-input" type="text" :value="item.name" v-model="item.name" @keyup.enter.stop="editTag(item, index)">
+                <input class="tag-input" type="text" :value="item.name" v-model="item.name" @keyup.enter.stop="editTag(item, index)" @blur="editTag(item, index)">
                 <i class="icon-delete" @click.stop="delTag(item, index)"></i>
             </li>
         </ul>
@@ -25,22 +25,47 @@ export default {
     created() {
         this.$store.dispatch('getAllTags').then(res => {
             this.tagArr.push(...res.data);
-        })
+        });
     },
     methods: {
-        addTag(){
-
+        addTag() {
+            if (this.newTag === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'warning',
+                    message: '标签还没写呢'
+                })
+                return;
+            }
+            for (let i = 0, max = this.tagArr.length; i < max; i++) {
+                if (this.newTag === this.tagArr[i].name) {
+                    this.$message({
+                        showClose: true,
+                        type: 'warning',
+                        message: '已经有过啦'
+                    });
+                    this.newTag = '';
+                    return;
+                }
+            }
+            this.$store.dispatch('addTag', this.newTag).then(res => {
+                this.tagArr.splice(this.tagArr.length, 0, res.data);
+                this.newTag = '';
+                this.$message({
+                    showClose: true,
+                    type: 'success',
+                    message: '已添加一个标签：' + res.data.name
+                })
+            })
         },
         editTag(item, index) {
+            item.enter = true;
             let value = {
                 val: item.name,
                 id: item._id
             };
-            // TODO @blur时，将旧值重新赋给item
-            let oldName = this.$store.state.article.allTags[index].name;
-            console.log(oldName);
             this.$store.dispatch('editTag', value).then(res => {
-                if(res.code === 200){
+                if (res.code === 200) {
                     this.$message({
                         showClose: true,
                         type: 'success',
@@ -78,7 +103,7 @@ export default {
 <style scoped lang="less">
 .tag {
     margin: 0 20px;
-    .el-input{
+    .el-input {
         max-width: 152px;
     }
     .tag-list {
@@ -95,7 +120,7 @@ export default {
             font-size: 16px;
             border: 1px dashed transparent;
             position: relative;
-            &:hover{
+            &:hover {
                 border: 1px dashed #888;
             }
             .tag-input {

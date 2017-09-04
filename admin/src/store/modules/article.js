@@ -59,7 +59,6 @@ const mutations = {
     },
     // 修改标签
     [types.EDIT_TAG](state, { tag, id }) {
-        console.log({tag,id});
         // 先检查当前文章状态
         if (state.thisArticle._id !== -1) {
             let thisTag = state.thisArticle.tags.find(o => o._id === id);
@@ -83,7 +82,7 @@ const mutations = {
         state.thisArticle.tags = article.tags;
         state.thisArticle.save = true;
         state.thisArticle.publish = false;
-        state.currentArticle.index = 0;
+        state.thisArticle.index = 0;
         state.allArticles.unshift(article);
     },
     // 修改文章
@@ -105,8 +104,36 @@ const mutations = {
         nowArticle.content = article.content;
         nowArticle.tags = article.tags;
         nowArticle.latEditTime = article.lastEditTime;
+    },
+    // 清空草稿
+    [types.EMPTY_ARTICLE](state) {
+        state.thisArticle._id = -1;
+        state.thisArticle.index = -1;
+        state.thisArticle.title = '';
+        state.thisArticle.abstract = '';
+        state.thisArticle.content = '';
+        state.thisArticle.tags = [];
+        state.thisArticle.publish = false;
+        state.thisArticle.save = false;
+    },
+    // 发布文章
+    [types.PUB_ARTICLE](state, index) {
+        if (index === undefined || index === state.thisArticle.index) {
+            state.thisArticle.publish = true;
+            state.allArticles[state.thisArticle.index].publish = true;
+        } else {
+            state.allArticles[index].publish = true;
+        }
+    },
+    // 取消发布
+    [types.NOT_PUB_ARTICLE](state, index) {
+        if(index === state.thisArticle.index) {
+            state.thisArticle.publish = false;
+            state.allArticles[state.thisArticle.index].publish = false;
+        } else {
+            state.allArticles[index].publish = false;
+        }
     }
-
 };
 
 const actions = {
@@ -142,7 +169,6 @@ const actions = {
     editTag({ commit }, { val, id }) {
         return new Promise((resolve, reject) => {
             Api.editTag(id, { name: val }).then(res => {
-                console.log(res.data);
                 if (res.data.code === 200) {
                     let tag = res.data.data
                     commit(types.EDIT_TAG, { tag, id });
@@ -165,8 +191,40 @@ const actions = {
                     reject(err);
                 })
         })
-    }
+    },
     // 保存文章 --> 1.新文章用新建文章； 2.旧文章编辑保存用修改文章
+    saveArticle({ commit, state }, { title, content, abstract, tags }) {
+        // 新文章 --> id === -1
+        console.log(state.thisArticle);
+        let id = state.thisArticle._id;
+        let article = { title, content, abstract, tags };
+        if (id === -1) {
+            return new Promise((resolve, reject) => {
+                Api.addArticle(article).then(res => {
+                    if (res.data.code === 200) {
+                        commit(types.ADD_ARTICLE, res.data.data);
+                        resolve(res.data);
+                    }
+                })
+                    .catch(err => {
+                        reject(err);
+                    })
+            })
+        } else { // 说明是旧文章，调用修改接口
+            return new Promise((resolve, reject) => {
+                Api.changeArticle(id, article).then(res => {
+                    // console.log(res)
+                    if (res.data.code === 200) {
+                        commit(types.CHANGE_ARTICLE, { article: res.data.data });
+                        resolve(res.data);
+                    }
+                })
+                    .catch(err => {
+                        reject(err);
+                    })
+            })
+        }
+    }
 };
 
 export default {
