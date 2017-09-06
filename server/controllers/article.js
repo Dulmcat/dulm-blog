@@ -18,7 +18,7 @@ const addArticle = async (ctx, next) => {
         title,
         content,
         abstract,
-        pubilsh,
+        publish,
         createTime,
         lastEditTime,
         tags
@@ -40,7 +40,8 @@ const addArticle = async (ctx, next) => {
 const publishArticle = async (ctx) => {
     const id = ctx.params.id;
     const publish = ctx.request.body.publish;
-    if(publish !== Boolean){
+    console.log(publish)
+    if(typeof(publish) !== 'boolean'){
         ctx.throw(400, 'punlish字段必须为布尔值！');
     }
     let result = await Article
@@ -186,7 +187,7 @@ const getAllPublishedArticles = async (ctx) => {
         result = await Article
             .find({ 
                 tags: tagId,
-                pubilsh: true 
+                publish: true 
             })
             .populate('tags')
             .exec()
@@ -196,7 +197,7 @@ const getAllPublishedArticles = async (ctx) => {
     } else if (page && limit) {
         result = await Article
             .find({ 
-                pubilsh: true 
+                publish: true 
             })
             .sort({'creatTime': -1})
             .skip(limit * (page -1))
@@ -215,7 +216,7 @@ const getAllPublishedArticles = async (ctx) => {
     } else { // 没有传递任何参数时， 返回所有文章
         result = await Article
             .find({ 
-                pubilsh: true 
+                publish: true 
             })
             .sort({'createTime': -1})
             .populate('tags')
