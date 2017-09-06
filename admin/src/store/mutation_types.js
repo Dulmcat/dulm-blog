@@ -17,7 +17,7 @@ export const CHANGE_ARTICLE = 'CHANGE_ARTICLE';
 // 保存文章
 export const SAVE_ARTICLE = 'SAVE_ARTICLE';
 // 获取所有文章
-export const GET_ALL_ARTICLE = 'GET_ALL_ARTICLE';
+export const GET_ALL_ARTICLES = 'GET_ALL_ARTICLES';
 // 获取当前文章
 export const GET_THIS_ARTICLE = 'GET_THIS_ARTICLE';
 // 发布文章

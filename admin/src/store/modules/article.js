@@ -133,6 +133,10 @@ const mutations = {
         } else {
             state.allArticles[index].publish = false;
         }
+    },
+    // 获得所有文章
+    [types.GET_ALL_ARTICLES](state, articles) {
+        state.allArticles = articles;
     }
 };
 
@@ -229,6 +233,7 @@ const actions = {
     pubArticle({ commit, state }, { id, index }) {
         return new Promise((resolve, reject) => {
             Api.pubArticle(id, true).then(res => {
+                console.log(res);
                 if (res.data.code === 200) {
                     commit(types.PUB_ARTICLE, index);
                     resolve(res.data);
@@ -245,6 +250,20 @@ const actions = {
             Api.pubArticle(id, false).then(res => {
                 if (res.data.code === 200) {
                     commit(types.NOT_PUB_ARTICLE, index);
+                    resolve(res.data);
+                }
+            })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
+    // 获得所有文章
+    getAllArticles({ commit }) {
+        return new Promise((resolve, reject) => {
+            Api.getAllArticles().then(res => {
+                if (res.data.code === 200) {
+                    commit(types.GET_ALL_ARTICLES, res.data.data);
                     resolve(res.data);
                 }
             })

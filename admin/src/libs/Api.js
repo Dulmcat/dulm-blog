@@ -20,7 +20,7 @@ export default {
     },
     // 发布文章
     pubArticle(id, bollean){
-        return axios.patch(baseUrl + '/articles/' + id, {publish: bollean});
+        return axios.patch(baseUrl + '/pubArticles/' + id, {publish: bollean});
     },
     // 修改文章
     changeArticle(id, data){

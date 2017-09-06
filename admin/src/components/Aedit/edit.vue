@@ -185,14 +185,6 @@ export default {
             })
         },
         clearAll(){
-            // if(this.title !== '' || this.content !== '' || this.abstract !== '' || this.tagArr.length !== 0){
-            //     this.$message({
-            //         showClose: true,
-            //         type: 'warning',
-            //         message: '当前文章还没保存呢。。。'
-            //     });
-            //     return;
-            // }
             this.$confirm('此操作将要删除已写内容！是否继续？','提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
@@ -212,8 +204,66 @@ export default {
             }).catch(() => {});
         },
         pubArticle(){
-            console.log('click pubArticle')
-        }        
+            let abstract = '';
+            if (this.content.indexOf('<!--more-->') !== -1 && this.content.split('<!--more-->')[0] !== '') {
+                abstract = this.content.split('<!--more-->')[0];
+            }
+            let article = {
+                title: this.title,
+                abstract: abstract,
+                content: this.content,
+                tags: this.tagArr,
+            }
+            if (this.title === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '标题还没写呢'
+                });
+                return;
+            }
+            if (abstract === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '摘要啦！ <!--more--> '
+                });
+                return;
+            }
+            if (this.content === '') {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '还没有内容！'
+                });
+                return;
+            }
+            if (this.tagArr.length === 0) {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '填上标签啊喂！'
+                });
+                return;
+            }
+            this.$confirm('确定发布这片文章吗？','提示',{
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.$store.dispatch('pubArticle', {id: this.$store.state.article.thisArticle._id}).then(res => {
+                    if(res.code === 200){
+                        this.$message({
+                            showClose: true,
+                            type: 'success',
+                            message: '发布成功！'
+                        })
+                    }
+                });
+            }).catch((err) => {
+                console.log(err)
+            });
+        }       
     }
 }
 

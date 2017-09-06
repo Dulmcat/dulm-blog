@@ -6,7 +6,7 @@
         <ul class="tag-list">
             <li class="list-item" v-for="(item, index) in tagArr" :key="item._id">
                 <i class="icon-tag"></i>
-                <input class="tag-input" type="text" :value="item.name" v-model="item.name" @keyup.enter.stop="editTag(item, index)" @blur="editTag(item, index)">
+                <input class="tag-input" type="text" v-model="item.name" @keyup.enter.stop="editTag(item, index)" @blur="editTag(item, index)">
                 <i class="icon-delete" @click.stop="delTag(item, index)"></i>
             </li>
         </ul>
@@ -24,6 +24,7 @@ export default {
     },
     created() {
         this.$store.dispatch('getAllTags').then(res => {
+            console.log(res)
             this.tagArr.push(...res.data);
         });
     },
@@ -59,7 +60,6 @@ export default {
             })
         },
         editTag(item, index) {
-            item.enter = true;
             let value = {
                 val: item.name,
                 id: item._id
