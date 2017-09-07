@@ -10,7 +10,7 @@
             <el-button type="primary" @click.stop="addTag()">点击添加</el-button>
             <ul class="tag-list">
                 <li class="list-item" v-for="(item, index) in tagArr" :key="item._id">
-                    <el-button icon="delete2" @click="delTag(item, index)">{{item.name}}</el-button>
+                    <p @click="delTag(item, index)">{{item.name}}</p>
                 </li>
             </ul>
         </div>
@@ -34,6 +34,32 @@ export default {
             content: '',
             tag: '',
             tagArr: [],
+        }
+    },
+    beforeRouteEnter(to, from, next) {
+        let index = to.query.index;
+        if (to.path === "/admin/article" && from.path === "/admin/list" && index >= 0) {
+            // console.log('come from edit button')
+            next(vm => {
+                let title = vm.$store.state.article.allArticles[index].title;
+                let content = vm.$store.state.article.allArticles[index].content;
+                let tagArr = vm.$store.state.article.allArticles[index].tags;
+                vm.title = title;
+                vm.tagArr = tagArr;
+                vm.content = content;
+                simplemde.value(content);
+                
+                // 更新store状态，变更编辑的文章为thisArticle
+                vm.$store.commit('CHANGE_ARTICLE', {
+                    article: vm.$store.state.article.allArticles[index],
+                    index
+                });
+            });
+        } else {
+            // console.log('directed to this page')
+            next(vm => {
+                vm.tagArr = vm.$store.state.article.thisArticle.tags
+            });
         }
     },
     mounted() {
@@ -97,7 +123,6 @@ export default {
                 return;
             }
             this.$store.dispatch('addTag', this.tag).then(res => {
-                this.tagArr.splice(this.tagArr.length, 0, res.data);
                 this.tag = '';
                 this.$message({
                     showClose: true,
@@ -184,8 +209,8 @@ export default {
                 }
             })
         },
-        clearAll(){
-            this.$confirm('此操作将要删除已写内容！是否继续？','提示', {
+        clearAll() {
+            this.$confirm('此操作将要删除已写内容！是否继续？', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -201,9 +226,9 @@ export default {
                     type: 'info',
                     message: '新建草稿成功！'
                 })
-            }).catch(() => {});
+            }).catch(() => { });
         },
-        pubArticle(){
+        pubArticle() {
             let abstract = '';
             if (this.content.indexOf('<!--more-->') !== -1 && this.content.split('<!--more-->')[0] !== '') {
                 abstract = this.content.split('<!--more-->')[0];
@@ -246,13 +271,13 @@ export default {
                 });
                 return;
             }
-            this.$confirm('确定发布这片文章吗？','提示',{
+            this.$confirm('确定发布这片文章吗？', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                this.$store.dispatch('pubArticle', {id: this.$store.state.article.thisArticle._id}).then(res => {
-                    if(res.code === 200){
+                this.$store.dispatch('pubArticle', { id: this.$store.state.article.thisArticle._id }).then(res => {
+                    if (res.code === 200) {
                         this.$message({
                             showClose: true,
                             type: 'success',
@@ -263,7 +288,7 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
-        }       
+        }
     }
 }
 
@@ -304,6 +329,8 @@ export default {
         margin-bottom: 20px;
     }
 }
+
+
 /*
 　　　　　　　　┏┓　　　┏┓+ +
 　　　　　　　┏┛┻━━━┛┻┓ + +

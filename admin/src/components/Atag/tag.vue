@@ -24,7 +24,6 @@ export default {
     },
     created() {
         this.$store.dispatch('getAllTags').then(res => {
-            console.log(res)
             this.tagArr.push(...res.data);
         });
     },

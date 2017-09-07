@@ -2,7 +2,7 @@ const Article = require('../models/index').article;
 
 // 添加新文章
 const addArticle = async (ctx, next) => {
-    const { title, content, pubilsh, tags, abstract } = ctx.request.body;
+    const { title, content, publish, tags, abstract } = ctx.request.body;
     const createTime = new Date();
     const lastEditTime = new Date();
     if (!title) {

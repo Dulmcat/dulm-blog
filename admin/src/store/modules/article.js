@@ -94,7 +94,7 @@ const mutations = {
         state.thisArticle.tags = article.tags;
         state.thisArticle.save = true;
         state.thisArticle.publish = article.publish;
-        if (index > 0) {
+        if (index >= 0) {
             state.thisArticle.index = index;
         }
 
@@ -199,7 +199,6 @@ const actions = {
     // 保存文章 --> 1.新文章用新建文章； 2.旧文章编辑保存用修改文章
     saveArticle({ commit, state }, { title, content, abstract, tags }) {
         // 新文章 --> id === -1
-        console.log(state.thisArticle);
         let id = state.thisArticle._id;
         let article = { title, content, abstract, tags };
         if (id === -1) {
@@ -233,7 +232,6 @@ const actions = {
     pubArticle({ commit, state }, { id, index }) {
         return new Promise((resolve, reject) => {
             Api.pubArticle(id, true).then(res => {
-                console.log(res);
                 if (res.data.code === 200) {
                     commit(types.PUB_ARTICLE, index);
                     resolve(res.data);

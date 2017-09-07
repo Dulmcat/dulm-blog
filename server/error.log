@@ -1,0 +1,30 @@
+10:28:06.07 <ERROR> ReferenceError: publish is not defined
+    at addArticle (C:\Users\Administrator\Desktop\v-k-blog\server\controllers\article.js:21:9)
+    at dispatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at module.exports (C:\Users\Administrator\Desktop\v-k-blog\server\tools\checkToken.js:18:11)
+    at dispatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\lib\router.js:345:16
+    at dispatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-router\lib\router.js:350:31)
+    at dispatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-compose\index.js:42:32)
+    at next (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa-compose\index.js:43:18)
+    at _callee$ (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\_koa2-cors@2.0.3@koa2-cors\dist\index.js:134:22)
+    at tryCatch (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\_regenerator-runtime@0.11.0@regenerator-runtime\runtime.js:65:40)
+    at Generator.invoke [as _invoke] (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\_regenerator-runtime@0.11.0@regenerator-runtime\runtime.js:299:22)
+    at Generator.prototype.(anonymous function) [as next] (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\_regenerator-runtime@0.11.0@regenerator-runtime\runtime.js:117:21) (in errorHandle.js:27)
+Call Stack:
+    at module.exports (C:\Users\Administrator\Desktop\v-k-blog\server\middlewares\errorHandle.js:27:16)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+14:16:00.31 <ERROR> InternalServerError: 服务器错误-->数据库删除tag出错
+    at Object.throw (C:\Users\Administrator\Desktop\v-k-blog\server\node_modules\koa\lib\context.js:91:11)
+    at Tag.findByIdAndRemove.exec.catch.err (C:\Users\Administrator\Desktop\v-k-blog\server\controllers\tag.js:36:18)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) (in errorHandle.js:27)
+Call Stack:
+    at module.exports (C:\Users\Administrator\Desktop\v-k-blog\server\middlewares\errorHandle.js:27:16)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
