@@ -137,7 +137,23 @@ const mutations = {
     // 获得所有文章
     [types.GET_ALL_ARTICLES](state, articles) {
         state.allArticles = articles;
-    }
+    },
+    // 删除文章 判断删的是不是thisArticle
+    [types.DEL_ARTICLE](state, index) {
+        if (index === state.thisArticle.index) {
+            state.thisArticle._id = -1;
+            state.thisArticle.index = -1;
+            state.thisArticle.abstract = '';
+            state.thisArticle.content = '';
+            state.thisArticle.title = '';
+            state.thisArticle.tags = [];
+            state.thisArticle.publish = false;
+            state.thisArticle.save = false;
+            state.allArticles.splice(index, 1);
+        } else {
+            state.allArticles.splice(index, 1);
+        }
+    },
 };
 
 const actions = {
@@ -269,6 +285,20 @@ const actions = {
                     reject(err);
                 });
         });
+    },
+    // 删除文章
+    delArticle({ commit }, { id, index }) {
+        return new Promise((resolve, reject) => {
+            Api.delArticle(id).then(res => {
+                if (res.data.code === 200) {
+                    commit(types.DEL_ARTICLE, res.data.data);
+                    resolve(res.data);
+                }
+            })
+                .catch(err => {
+                    reject(err);
+                })
+        })
     }
 };
 

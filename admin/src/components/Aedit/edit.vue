@@ -13,6 +13,12 @@
                     <p @click="delTag(item, index)">{{item.name}}</p>
                 </li>
             </ul>
+            <!-- TODO 改用element-ui的标签 -->
+            <!-- <el-tag :key="item" v-for="item in tagArr" :closable="true" :close-transition="false" @close="handleClose(tag)">
+                {{item.name}}
+            </el-tag>
+            <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="mini" @keyup.enter.native="handleInputConfirm" @blur="handleInputConfirm"></el-input>
+            <el-button v-else class="button-new-tag" size="small" @click="showInput">添加新标签</el-button> -->
         </div>
         <textarea id="editor"></textarea>
         <div class="btn">
@@ -48,7 +54,7 @@ export default {
                 vm.tagArr = tagArr;
                 vm.content = content;
                 simplemde.value(content);
-                
+
                 // 更新store状态，变更编辑的文章为thisArticle
                 vm.$store.commit('CHANGE_ARTICLE', {
                     article: vm.$store.state.article.allArticles[index],
@@ -58,6 +64,7 @@ export default {
         } else {
             // console.log('directed to this page')
             next(vm => {
+                // 初始化tagArr
                 vm.tagArr = vm.$store.state.article.thisArticle.tags
             });
         }
@@ -329,6 +336,7 @@ export default {
         margin-bottom: 20px;
     }
 }
+
 
 
 /*

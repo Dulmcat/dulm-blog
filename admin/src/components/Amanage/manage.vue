@@ -1,6 +1,6 @@
 <template>
     <div class="manage">
-        <h1>标签管理</h1>
+        <h1>文章管理</h1>
         <el-row class="row-head">
             <el-col :span="4">
                 <div class="grid-content bg-purple">标题</div>
@@ -71,8 +71,79 @@ export default {
         // 编辑文章，直接转到admin/article, 在编辑页面通过路由判断
         edit(item, index) {
             this.$router.replace({ path: '/admin/article', query: { index } });
+        },
+        dele(item, index) {
+            this.$confirm('确定删除这篇文章？删除后无法恢复！', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then((res) => {
+                this.$store.dispatch('delArticle', { id: item.id, index }).then(res => {
+                    if (res.code === 200) {
+                        this.articles.splice(index, 1);
+                        this.$message({
+                            showClose: true,
+                            type: 'success',
+                            message: '成功删除一篇文章'
+                        });
+                    }
+                });
+            }).catch(() => {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '已取消删除'
+                });
+            });
+        },
+        notPub(item, index) {
+            this.$confirm('确定取消发布这篇文章？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then((res) => {
+                this.$store.dispatch('notPubArticle', { id: item.id, index }).then(res => {
+                    if (res.code === 200) {
+                        item.publish = res.data.publish;
+                        this.$message({
+                            showClose: true,
+                            type: 'success',
+                            message: '取消发布成功'
+                        });
+                    }
+                });
+            }).catch(() => {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '并没有取消发布'
+                });
+            });
+        },
+        pub(item, index) {
+            this.$confirm('确定发布这篇文章？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then((res) => {
+                this.$store.dispatch('pubArticle', { id: item.id, index }).then(res => {
+                    if (res.code === 200) {
+                        item.publish = res.data.publish;
+                        this.$message({
+                            showClose: true,
+                            type: 'success',
+                            message: '发布成功'
+                        });
+                    }
+                });
+            }).catch(() => {
+                this.$message({
+                    showClose: true,
+                    type: 'info',
+                    message: '并没有发布'
+                });
+            });
         }
-
     }
 }
 </script>
@@ -103,6 +174,10 @@ export default {
     border-radius: 0;
 }
 
+.el-tag {
+    margin-left: 8px;
+}
+
 .bg-purple-dark {
     background: #99a9bf;
 }
@@ -117,9 +192,9 @@ export default {
 
 .grid-content {
     border-radius: 0;
-    min-height: 36px;
+    min-height: 42px;
     text-align: center;
-    line-height: 36px;
+    line-height: 42px;
     overflow: hidden;
     /*自动隐藏文字*/
     text-overflow: ellipsis;
