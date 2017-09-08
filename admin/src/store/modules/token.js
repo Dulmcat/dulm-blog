@@ -19,10 +19,14 @@ const mutations = {
 
 const actions = {
     createToken({ commit }, { username, password }) {
+        debugger;
         return new Promise((resolve, reject) => {
+            debugger;
             Api.login({ username, password }).then(res => {
                 // 登陆成功
+                debugger;
                 if (res.data.token) {
+                    debugger;
                     let token = res.data.token;
                     commit(types.TOKEN_CREATE, token);
                     resolve(res.data)
