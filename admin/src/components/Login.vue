@@ -22,7 +22,6 @@
         },
         methods: {
             login() {
-                debugger;
                 if (this.username === '') {
                     this.$message({
                         showClose: true,
@@ -41,7 +40,6 @@
                 }
                 let username = this.username;
                 let password = this.password;
-                debugger;
                 this.$store.dispatch('createToken', { username, password }).then(res => {
                     if (res.token) {
                         let redirectUrl = '';
