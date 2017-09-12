@@ -10,7 +10,7 @@ import Tag from '../components/Atag/tag.vue'
 Vue.use(Router)
 // TODO 路由懒加载
 const router = new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [
         {
             path: '/login',
