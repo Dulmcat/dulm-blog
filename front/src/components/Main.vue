@@ -1,11 +1,13 @@
 <template>
-<div class="page">
-    <v-side></v-side>
-    <transition name="fade" mode="out-in">
-        
-    </transition>
-    <v-foot></v-foot>
-</div>
+    <div class="page">
+        <v-side></v-side>
+        <v-foot></v-foot>
+        <section>
+            <transition name="slide">
+                <router-view></router-view>
+            </transition>
+        </section>
+    </div>
 </template>
 <script>
 import Vside from './common/Side.vue'
@@ -15,13 +17,16 @@ export default {
     components: {
         'v-side': Vside,
         'v-foot': Vfoot,
-    },
-    data() {
-
     }
 }
 </script>
 <style lang="less" scoped>
+section{
+    position: absolute;
+    top: 0;
+    left: 320px;
+    right: 0;
+}
 
 </style>
 
