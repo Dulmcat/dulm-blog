@@ -28,20 +28,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-ul {
-    list-style: none;
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-    li {
-        font-size: 18px;
-        margin: 20px 0;
-        text-align: center;
-        color: #f0f0f0;
-        cursor: pointer;
-    }
-}
-
+@import '../../assets/style/_setting';
 .warp {
     position: absolute;
     left: 0;
@@ -52,29 +39,35 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("./../../assets/bg0.jpg");
+    // background-image: url("./../../assets/bg0.jpg");
+    background-image: url("http://ogvnmzuxx.bkt.clouddn.com/bg0-tiny.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 10px #181830;
+    box-shadow: 0 0 10px @black;
     .avatar {
         width: 100%;
         img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 5px solid #f0f0f0;
-            box-shadow: 0 0 5px #181830;
+            border: 5px solid @white;
+            box-shadow: 0 0 5px @black;
         }
     }
     .list {
         ul {
             .list-item {
+                font-size: 18px;
+                margin: 20px 0;
+                text-align: center;
+                color: @white;
+                cursor: pointer;
                 &:hover {
-                    color: #48c0c0;
+                    color: @green;
                 }
-                &.active{
-                    color: #48c0c0;
+                &.active {
+                    color: @green;
                 }
             }
         }
@@ -83,15 +76,15 @@ ul {
         position: absolute;
         bottom: 10px;
         font-size: 10px;
-        color: #f0f0f0;
+        color: @white;
         text-align: center;
         >a {
-            color: #48c0c0;
+            color: @green;
             &:active {
-                color: #48c0c0;
+                color: @green;
             }
             &:visited {
-                color: #48c0c0;
+                color: @green;
             }
         }
     }

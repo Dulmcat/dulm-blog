@@ -3,7 +3,7 @@
         <v-side></v-side>
         <v-foot></v-foot>
         <section>
-            <transition name="slide">
+            <transition name="slide" mode="out-in">
                 <router-view></router-view>
             </transition>
         </section>
