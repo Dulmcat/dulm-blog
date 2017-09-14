@@ -12,25 +12,12 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import "../../assets/style/_setting";
 .warp {
-    width: 1100px;
-    display: block;
-    text-align: center;
-    position: absolute;
-    left: 300px;
-    bottom: 20px;
-    right: 0;
+    padding: 30px 0;
+    border-top: 1px solid @border;
     >div {
         text-align: center;
-        >a {
-            color: #48c0c0;
-            &:active {
-                color: #48c0c0;
-            }
-            &:visited {
-                color: #48c0c0;
-            }
-        }
     }
 }
 </style>

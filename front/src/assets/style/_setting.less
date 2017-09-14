@@ -1,12 +1,46 @@
 /*
  * 自定义变量
  */
-@white: #f0f0f0;
-@black: #181830;
-@green: #48c0c0;
-
+@white: #f0f0f0; /* 白色 */
+@black: #3c3c3c; /* 黑色 */
+@green: #48c0c0; /* 主题色--绿色 */
+@border: #d9d9d9;/* 边框颜色 */
+@note: #909090; /* 注释性文字颜色 */
+/* 
+ * 重置元素原有样式
+ */
+h1,h2,h3,h4,h5,div,p{
+    font-weight: 400;
+    color: @black;
+}
+div, p, li{
+    font-size: 16px;
+    word-break: break-all;
+}
 ul{
     list-style: none;
     padding: 0;
     margin: 0;
+}
+a{
+    color: @green;
+    &:hover{
+        color: @green;
+    }
+    &:active{
+        color: @green;
+    }
+    &:visited{
+        color: @green;
+    }
+}
+/* 
+ * markdown 解析后的样式修改
+ */
+
+blockquote {
+    margin: 0;
+    padding: 1px; /* fix <p></p> margin bug */
+    padding-left: 20px;
+    border-left: 3px solid @green;
 }

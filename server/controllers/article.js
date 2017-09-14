@@ -117,7 +117,7 @@ const getSingleArticle = async (ctx) => {
     });
     return ctx.body = {
         code: 200,
-        msg: '文章创建成功！',
+        msg: '获得文章成功！',
         data: result
     }
 };
@@ -199,7 +199,7 @@ const getAllPublishedArticles = async (ctx) => {
             .find({ 
                 publish: true 
             })
-            .sort({'creatTime': -1})
+            .sort({'createTime': -1})
             .skip(limit * (page -1))
             .limit(limit)
             .populate('tags')

@@ -17,7 +17,7 @@
         </div>
         <div class="pic-tag">
             背景图片来自
-            <a href="https://www.pixiv.net/member_illust.php?mode=medium&illust_id=64414444">夏の終わり</a> <br> 如有侵权，联系立删
+            <a href="https://www.pixiv.net/member_illust.php?mode=medium&illust_id=64414444" target="_blank">夏の終わり</a> <br> 如有侵权，联系立删
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
 <style lang="less" scoped>
 @import '../../assets/style/_setting';
 .warp {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     right: 0;
@@ -39,8 +39,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-image: url("./../../assets/bg0.jpg");
-    background-image: url("http://ogvnmzuxx.bkt.clouddn.com/bg0-tiny.jpg");
+    /*background-image: url("./../../assets/bg0.jpg");*/
+    background-image: url("http://ogvnmzuxx.bkt.clouddn.com/backimg0.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -65,6 +65,7 @@ export default {
                 cursor: pointer;
                 &:hover {
                     color: @green;
+                    transition: .25s;
                 }
                 &.active {
                     color: @green;
@@ -86,6 +87,36 @@ export default {
             &:visited {
                 color: @green;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .warp {
+        width: 100%;
+        height: 139px;
+        position: initial;
+        top: 0;
+        z-index: 3;
+        .avatar {
+            margin: 10px 0;
+            text-align: center;
+            img{
+                width: 75px;
+                height: 75px;
+            }
+        }
+        .list {
+            ul {
+                margin: 10px 0;
+                .list-item{
+                    display: inline-block;
+                    margin: 0 10px;
+                }
+            }
+        }
+        .pic-tag{
+            display: none;
         }
     }
 }

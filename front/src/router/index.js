@@ -9,6 +9,7 @@ const Index = () => import('@/components/index.vue')
 const Archives = () => import('@/components/Archives.vue')
 const Tags = () => import('@/components/Tags.vue')
 const About = () => import('@/components/About.vue')
+const Articles = () => import('@/components/Articles.vue')
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
                     path: '/main/about',
                     name: 'About',
                     component: About
+                },
+                {
+                    path: '/main/articles/:id',
+                    name: 'Articles',
+                    component: Articles
                 }
             ]
         },
