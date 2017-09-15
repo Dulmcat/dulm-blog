@@ -14,5 +14,13 @@ export default {
     // 通过id获取
     getSingleArticle(id){
         return axios.get(baseUrl + '/articles/' + id);
-    }
+    },
+    // 通过tagId获取文章
+    getArticlesByTagId(id){
+        return axios.get(`${baseUrl}/articles?tag=${id}`);
+    },
+    getAllTags(){
+        return axios.get(baseUrl + '/tags');
+    },
+
 }

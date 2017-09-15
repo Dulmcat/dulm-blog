@@ -6,9 +6,9 @@
                     <router-link tag="span" :to="'articles/' + item._id">{{item.title}}</router-link>
                 </h1>
                 <div class="create-time">{{item.createTime}}</div>
-                <p class="abstract" v-html="maked(item.abstract)">...</p>
+                <p class="abstract" v-html="mark(item.abstract || '')">...</p>
                 <p class="read-all">
-                    <span>查看全文</span>
+                    <router-link tag="span" :to="'articles/' + item._id">查看全文</router-link>
                 </p>
             </li>
         </ul>
@@ -46,7 +46,7 @@ export default {
         })
     },
     methods: {
-        maked(value){
+        mark(value){
             return marked(value);
         },
         prew(){

@@ -1,10 +1,9 @@
 <template>
-<div class="warp">
-    <h1>{{article.title}}</h1>
-    <p>{{article.createTime}}</p>
-    <div v-html="maked(article.content)"></div>
-</div>
-    
+    <div class="warp">
+        <h1>{{article.title}}</h1>
+        <p class="create-time">{{article.createTime}}</p>
+        <div v-html="mark(article.content || '')"></div>
+    </div>
 </template>
 <script>
 import marked from 'marked'
@@ -16,21 +15,23 @@ export default {
             article: {}
         }
     },
-    created(){
+    created() {
         Api.getSingleArticle(this.$route.params.id).then(res => {
-            console.log(res.data);
-            if(res.data.code === 200){
+            if (res.data.code === 200) {
                 this.article = res.data.data;
             }
         })
     },
     methods: {
-        maked(value){
+        mark(value) {
             return marked(value);
-        },
+        }
     }
 }
 </script>
 <style lang="less" scoped>
-
+@import "../assets/style/_setting";
+.create-time{
+    color: @note;
+}
 </style>
