@@ -15,7 +15,7 @@ export default {
             article: {}
         }
     },
-    created() {
+    created() { 
         Api.getSingleArticle(this.$route.params.id).then(res => {
             if (res.data.code === 200) {
                 this.article = res.data.data;

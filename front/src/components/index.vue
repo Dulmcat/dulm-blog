@@ -18,7 +18,7 @@
                     << 上一页</span>
             </li>
             <li>
-                <router-link tag="span" to="articles">博客归档</router-link>
+                <router-link tag="span" to="archives">博客归档</router-link>
             <li @click="next()">
                 <span v-show="this.articles.length >= 5"> 下一页 >> </span>
             </li>
@@ -41,6 +41,7 @@ export default {
     created() {
         Api.getArticlesByPage(this.page, this.limit).then(res => {
             if (res.data.code === 200) {
+                console.log(res.data.data);
                 this.articles = res.data.data;
             }
         })
@@ -48,6 +49,9 @@ export default {
     methods: {
         mark(value){
             return marked(value);
+        },
+        timeFix(value){
+            return true;
         },
         prew(){
             this.page = this.page - 1;
@@ -78,8 +82,7 @@ export default {
     min-height: calc(100% - 135px);
     .list {
         min-height: calc(100% - 135px);
-        li {
-            padding: 20px 0;
+        >li {
             border-bottom: 1px solid @border;
             .title {
                 span {
