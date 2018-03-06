@@ -1,6 +1,6 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:3001/api';
-// const baseUrl = 'http://23.83.228.171:3001/api';
+// const baseUrl = 'http://localhost:3001/api';
+const baseUrl = 'http://23.83.228.171:3001/api';
 
 export default {
     // 管理员登陆
