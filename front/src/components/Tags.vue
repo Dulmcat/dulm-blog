@@ -2,14 +2,14 @@
     <div class="tags">
         <h1>标签</h1>
         <ul class="tag-list">
-            <li v-for="(i, index) in tags" @click="tagSearch(i)">{{i.name}}</li>
+            <li v-for="i in tags" @click="tagSearch(i)" :key="i.id">{{i.name}}</li>
         </ul>
         <br>
         <ul class="search-list" v-show="this.articles.length !== 0">
             <h2 class="search-title">标签
                 <span class="click-tag"> {{ clickTag }} </span>下的文章
             </h2>
-            <li v-for="(item, index) in articles">
+            <li v-for="item in articles" :key="item.id">
                 <h1 class="title">
                     <router-link tag="span" :to="'articles/' + item._id">{{item.title}}</router-link>
                 </h1>

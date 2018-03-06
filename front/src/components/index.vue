@@ -1,7 +1,7 @@
 <template>
     <div class="warp">
         <ul class="list">
-            <li v-for="(item, index) in articles">
+            <li v-for="item in articles" :key="item.id">
                 <h1 class="title">
                     <router-link tag="span" :to="'articles/' + item._id">{{item.title}}</router-link>
                 </h1>
@@ -15,12 +15,12 @@
         <ul class="pagination">
             <li @click="prew()">
                 <span v-show="this.page !== 1">
-                    << 上一页</span>
+                    <i class="el-icon-arrow-left"></i> 上一页</span>
             </li>
             <li>
                 <router-link tag="span" to="archives">博客归档</router-link>
             <li @click="next()">
-                <span v-show="this.articles.length >= 5"> 下一页 >> </span>
+                <span v-show="this.articles.length >= 5"> 下一页 <i class="el-icon-arrow-right"></i> </span>
             </li>
         </ul>
     </div>

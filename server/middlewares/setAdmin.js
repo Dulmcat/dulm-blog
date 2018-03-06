@@ -21,6 +21,7 @@ const setAdmin = async(ctx, next) => {
         });
         console.log('已设置admin账号密码');
     }
+    console.log('进入设置账号密码了')
     await next(); // 进入下一个中间件
 };
 

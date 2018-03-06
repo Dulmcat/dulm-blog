@@ -21,13 +21,13 @@
                 <div class="grid-content bg-purple-light">操作</div>
             </el-col>
         </el-row>
-        <el-row class="row-main" v-for="(item, index) in articles" key="item">
+        <el-row class="row-main" v-for="(item, index) in articles" :key="item.id">
             <el-col :span="4">
                 <div class="grid-content bg-purple">{{item.title}}</div>
             </el-col>
             <el-col :span="4">
                 <div class="grid-content bg-purple-light">
-                    <el-tag v-for="(i, index) in item.tags" key="i">{{i.name}}</el-tag>
+                    <el-tag v-for="i in item.tags" :key="i.id">{{i.name}}</el-tag>
                 </div>
             </el-col>
             <el-col :span="4">
@@ -46,7 +46,7 @@
                     <el-button type="primary" size="small" @click="edit(item, index)">编辑</el-button>
                     <el-button type="danger" size="small" @click="dele(item, index)">删除</el-button>
                     <el-button type="primary" size="small" @click="notPub(item, index)" v-if="item.publish === true">取消发布</el-button>
-                    <el-button type="primary" size="small" @click="pub(item, index)" v-else="item.publish === false">发布文章</el-button>
+                    <el-button type="primary" size="small" @click="pub(item, index)" v-else>发布文章</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -167,8 +167,6 @@ export default {
         border: none;
     }
 }
-
-.row-main {}
 
 .el-col {
     border-radius: 0;

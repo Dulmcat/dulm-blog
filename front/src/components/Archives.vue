@@ -2,7 +2,7 @@
     <div class="archives">
         <h1>博客归档</h1>
         <ul>
-            <li class="list" v-for="(item, index) in articles">
+            <li class="list" v-for="item in articles" :key="item.id">
                 <router-link class="title" :to="'articles/' + item._id">{{item.title}}</router-link>
                 <span class="create-time">{{item.createTime}}</span>
             </li>

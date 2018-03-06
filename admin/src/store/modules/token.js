@@ -2,18 +2,18 @@ import * as types from '../mutation_types';
 import Api from './../../libs/Api';
 
 const state = {
-    token: sessionStorage.getItem('userToken')
+    token: localStorage.getItem('userToken')
 }
 
 // 注册事件类型
 const mutations = {
     [types.TOKEN_CREATE]: (state, val) => {
         state.token = val;
-        sessionStorage.setItem('userToken', val)
+        localStorage.setItem('userToken', val)
     },
     [types.TOKEN_DELETE]: (state) => {
         state.token = null;
-        sessionStorage.removeItem('userToken');
+        localStorage.removeItem('userToken');
     }
 };
 

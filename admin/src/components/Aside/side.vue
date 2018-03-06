@@ -27,7 +27,7 @@ export default{
         left: 0;
         bottom: 0;
         height: 100%;
-        background-color:  #2b2b2b;
+        background-color:  #48c0c0;
         color: #fefefe;
         .aside-list{
             height: 60px;

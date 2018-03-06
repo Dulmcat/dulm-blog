@@ -1,19 +1,19 @@
 <template>
     <div class="page">
         <v-side></v-side>
-        <section>
+        <div class="section">
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
             </transition>
             <v-foot></v-foot>
-        </section>
+        </div>
     </div>
 </template>
 <script>
 import Vside from './common/Side.vue'
 import Vfoot from './common/Foot.vue'
 export default {
-    name: 'main',
+    name: 'mainpart',
     components: {
         'v-side': Vside,
         'v-foot': Vfoot,
@@ -31,7 +31,7 @@ export default {
     right: 0;
     bottom: 0;
 }
-section{
+.section{
     position: absolute;
     top: 0;
     left: 300px;
@@ -42,7 +42,7 @@ section{
     margin: 0 30px;
 }
 @media only screen and (max-width: 500px){
-    section{
+    .section{
         position: initial;
         margin: 0 20px;
     }
