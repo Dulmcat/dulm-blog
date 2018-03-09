@@ -34,4 +34,8 @@ export default {
 .create-time{
     color: @note;
 }
+img{
+    max-with: 995px;
+    width: 100%;
+}
 </style>

@@ -1,0 +1,8 @@
+[31m[1m10:39:49.32 <ERROR> TypeError: Cannot read property 'populate' of null
+    at getSingleArticle (C:\Users\Administrator\Desktop\dulm-blog\server\controllers\article.js:116:18)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) (in errorHandle.js:27)
+Call Stack:
+    at module.exports (C:\Users\Administrator\Desktop\dulm-blog\server\middlewares\errorHandle.js:27:16)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)[22m[39m

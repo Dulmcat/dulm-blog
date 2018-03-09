@@ -1,6 +1,7 @@
 const config = require('../configs');
 const User = require('../models/index').user;
 const md5 = require('md5');
+const chinaTime = require('china-time');
 
 const setAdmin = async(ctx, next) => {
     const username = config.admin.username;
@@ -21,7 +22,7 @@ const setAdmin = async(ctx, next) => {
         });
         console.log('已设置admin账号密码');
     }
-    console.log('进入设置账号密码了')
+    console.log(chinaTime('YYYY-MM-DD HH:mm:ss')+'进入设置账号密码了')
     await next(); // 进入下一个中间件
 };
 

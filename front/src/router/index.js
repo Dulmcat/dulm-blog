@@ -14,40 +14,44 @@ const Articles = () => import('@/components/Articles.vue')
 Vue.use(Router)
 
 export default new Router({
-    // mode: 'history',
+    mode: 'history',
     routes: [
         {
             path: '/',
             name: 'Main',
             component: Main,
-            redirect: '/main/index',
+            redirect: '/blog/index',
             children: [
                 {
-                    path: '/main/index',
+                    path: '/blog/index',
                     name: 'Index',
                     component: Index
                 },
                 {
-                    path: '/main/archives',
+                    path: '/blog/archives',
                     name: 'Archives',
                     component: Archives
                 },
                 {
-                    path: '/main/tags',
+                    path: '/blog/tags',
                     name: 'Tags',
                     component: Tags
                 },
                 {
-                    path: '/main/about',
+                    path: '/blog/about',
                     name: 'About',
                     component: About
                 },
                 {
-                    path: '/main/articles/:id',
+                    path: '/blog/articles/:id',
                     name: 'Articles',
                     component: Articles
                 }
             ]
+        },
+        {
+            path: '*',
+            redirect: '/blog/index'
         },
         {
             path: '/hello',

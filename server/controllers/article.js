@@ -1,4 +1,5 @@
 const Article = require('../models/index').article;
+const moment = require('moment');
 
 // 添加新文章
 const addArticle = async (ctx, next) => {
@@ -224,6 +225,10 @@ const getAllPublishedArticles = async (ctx) => {
             .catch(err => {
                 ctx.throw(500, '服务器内部错误-->直接查找所有文章错误！');
             });
+    }
+    for(let i = 0; i < result.length; i++) {
+        result[i].createTime = new Date(result[i].createTime).toLocaleString()
+        console.log(result[i].createTime)
     }
     return ctx.body = {
         code: 200,

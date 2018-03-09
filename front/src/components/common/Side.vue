@@ -2,16 +2,16 @@
     <div class="warp">
         <div class="main">
             <div class="avatar">
-                <router-link to="/main/about">
-                    <img src="./../../assets/avatar.jpg" alt="头像">
+                <router-link to="/blog/about">
+                    <img src="../../assets/avatar.jpg" alt="头像">
                 </router-link>
             </div>
             <div class="list">
                 <ul>
-                    <router-link to="/main/index" tag="li" active-class="active" class="list-item">首页</router-link>
-                    <router-link to="/main/archives" tag="li" active-class="active" class="list-item">归档</router-link>
-                    <router-link to="/main/tags" tag="li" active-class="active" class="list-item">标签</router-link>
-                    <router-link to="/main/about" tag="li" active-class="active" class="list-item">关于我</router-link>
+                    <router-link to="/blog/index" tag="li" active-class="active" class="list-item">首页</router-link>
+                    <router-link to="/blog/archives" tag="li" active-class="active" class="list-item">归档</router-link>
+                    <router-link to="/blog/tags" tag="li" active-class="active" class="list-item">标签</router-link>
+                    <router-link to="/blog/about" tag="li" active-class="active" class="list-item">关于我</router-link>
                 </ul>
             </div>
         </div>
@@ -53,6 +53,10 @@ export default {
             border-radius: 50%;
             border: 5px solid @white;
             box-shadow: 0 0 5px @black;
+            &:hover{
+                border: 5px solid @green;
+                transition: all 0.5s ease;
+            }
         }
     }
     .list {
@@ -65,7 +69,7 @@ export default {
                 cursor: pointer;
                 &:hover {
                     color: @green;
-                    transition: .25s;
+                    transition: .5s;
                 }
                 &.active {
                     color: @green;

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment');
+const chinaTime = require('china-time');
 moment.locale('zh-cn');
 
 // 定义article模型
@@ -23,10 +24,10 @@ const articleSchema = new Schema({
 articleSchema.set('toJSON', {getters: true, virtuals: true});
 articleSchema.set('toObject', {getters: true, virtuals: true});
 articleSchema.path('createTime').get(function(v){
-    return moment(v).format('YYYY-MM-DD HH:mm:ss');
+    return chinaTime('YYYY-MM-DD HH:mm:ss');
 });
 articleSchema.path('lastEditTime').get(function (v) {
-    return moment(v).format('YYYY-MM-DD HH:mm:ss');
+    return chinaTime('YYYY-MM-DD HH:mm:ss');
 });
 
 module.exports = mongoose.model('article', articleSchema);
