@@ -19,4 +19,4 @@ const uploadToken = async(ctx) => {
     }
 }
 
-module.exports = uploadToken
+module.exports = { uploadToken }
