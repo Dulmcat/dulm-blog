@@ -8,8 +8,9 @@ const state = {
 // 注册事件类型
 const mutations = {
     [types.TOKEN_CREATE]: (state, val) => {
-        state.token = val;
-        localStorage.setItem('userToken', val)
+        state.token = val.token;
+        console.log(val.name)
+        localStorage.setItem('userToken', val.token)
     },
     [types.TOKEN_DELETE]: (state) => {
         state.token = null;
@@ -23,8 +24,11 @@ const actions = {
             Api.login({ username, password }).then(res => {
                 // 登陆成功
                 if (res.data.token) {
-                    let token = res.data.token;
-                    commit(types.TOKEN_CREATE, token);
+                    let val = {
+                        token: res.data.token,
+                        name: res.data.data.name
+                    }
+                    commit(types.TOKEN_CREATE, val);
                     resolve(res.data)
                 }
                 // 登陆失败

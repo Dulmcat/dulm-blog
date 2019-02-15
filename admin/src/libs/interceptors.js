@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from './../store/index.js'
 import router from './../router'
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.timeout = 5000;
 
 // request

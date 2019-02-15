@@ -12,6 +12,7 @@
 
 <script>
     import Api from './../libs/Api'
+    import Love from './../libs/love'
     import router from './../router'
     export default {
         name: 'Login',
@@ -22,6 +23,7 @@
             }
         },
         mounted () {
+            Love();
             document.addEventListener('touchmove', function (e) {
                 e.preventDefault()
             })
