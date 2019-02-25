@@ -40,7 +40,7 @@ export default {
     align-items: center;
     justify-content: center;
     /*background-image: url("./../../assets/bg0.jpg");*/
-    background-image: url("http://ogvnmzuxx.bkt.clouddn.com/backimg0.png");
+    background-image: url("http://cdn.dulmcat.com/backimg0.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
